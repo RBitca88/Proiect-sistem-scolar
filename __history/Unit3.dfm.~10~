@@ -1,0 +1,315 @@
+object dm: Tdm
+  OldCreateOrder = False
+  Height = 445
+  Width = 760
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=scoala_2'
+      'Server=DESKTOP-T00FKFA'
+      'OSAuthent=Yes'
+      'DriverID=MSSQL')
+    Connected = True
+    LoginPrompt = False
+    Left = 48
+    Top = 32
+  end
+  object Qclasa: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from clasa')
+    Left = 272
+    Top = 8
+  end
+  object DSQclasa: TDataSource
+    DataSet = Qclasa
+    Left = 192
+    Top = 8
+  end
+  object Qelev: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      
+        'select e.*, cl.nume_clasa from elev e inner join clasa cl on e.c' +
+        'lasa_id=cl.clasa_id'
+      'where activ=1')
+    Left = 272
+    Top = 64
+  end
+  object DSQelev: TDataSource
+    DataSet = Qelev
+    Left = 192
+    Top = 64
+  end
+  object Qedit: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      
+        'update elev set nume=:nume, prenume=:prenume, clasa_id=:clasa_id' +
+        ', gen=:gen, telefon=:telefon,'
+      
+        'email=:email, data_nast=:data_nast, data_inreg=:data_inreg, adre' +
+        'sa=:adresa where elev_id=:elev_id')
+    Left = 688
+    Top = 32
+    ParamData = <
+      item
+        Name = 'NUME'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'PRENUME'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'CLASA_ID'
+        ParamType = ptInput
+      end
+      item
+        Name = 'GEN'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'TELEFON'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'EMAIL'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'DATA_NAST'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'DATA_INREG'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'ADRESA'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'ELEV_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+  end
+  object Qliber: TFDQuery
+    Connection = FDConnection1
+    Left = 696
+    Top = 96
+  end
+  object Qdelete: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'update elev set activ=0 where elev_id=:elev_id')
+    Left = 640
+    Top = 32
+    ParamData = <
+      item
+        Name = 'ELEV_ID'
+        ParamType = ptInput
+      end>
+  end
+  object Qexperienta: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from experienta')
+    Left = 272
+    Top = 120
+  end
+  object DSQexperienta: TDataSource
+    DataSet = Qexperienta
+    Left = 192
+    Top = 120
+  end
+  object Qprofesor: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      
+        'select p.*, ex.denumire_exp from profesor p inner join experient' +
+        'a ex on p.experienta_id=ex.experienta_id'
+      'where activ=1')
+    Left = 272
+    Top = 176
+  end
+  object DSQprofesor: TDataSource
+    DataSet = Qprofesor
+    Left = 192
+    Top = 176
+  end
+  object Qeditp: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      
+        'update profesor set nume=:nume, prenume=:prenume, experienta_id=' +
+        ':experienta_id, gen=:gen, telefon=:telefon,'
+      
+        'email=:email, data_nast=:data_nast, data_inreg=:data_inreg, adre' +
+        'sa=:adresa where profesor_id=:profesor_id')
+    Left = 648
+    Top = 96
+    ParamData = <
+      item
+        Name = 'NUME'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'PRENUME'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'EXPERIENTA_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'GEN'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'TELEFON'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'EMAIL'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'DATA_NAST'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'DATA_INREG'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'ADRESA'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'PROFESOR_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+  end
+  object Qtaxa: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from taxa where activ=1')
+    Left = 288
+    Top = 240
+  end
+  object Qlibtaxa: TFDQuery
+    Connection = FDConnection1
+    Left = 704
+    Top = 176
+  end
+  object DSQtaxa: TDataSource
+    DataSet = Qtaxa
+    Left = 200
+    Top = 240
+  end
+  object Qeditt: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      
+        'update taxa set clasa=:clasa, nume=:nume, prenume=:prenume, tip_' +
+        'achitare=:tip_achitare,'
+      
+        'suma=:suma, suma_depusa=:suma_depusa, suma_ramasa=:suma_ramasa, ' +
+        'data_achit=:data_achit where taxa_id=:taxa_id')
+    Left = 648
+    Top = 176
+    ParamData = <
+      item
+        Name = 'CLASA'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'NUME'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'PRENUME'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'TIP_ACHITARE'
+        DataType = ftString
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'SUMA'
+        DataType = ftFloat
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'SUMA_DEPUSA'
+        DataType = ftFloat
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'SUMA_RAMASA'
+        DataType = ftFloat
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'DATA_ACHIT'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'TAXA_ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
+  end
+end
